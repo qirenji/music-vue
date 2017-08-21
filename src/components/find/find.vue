@@ -73,7 +73,12 @@ export default {
 			},
 			deep:true
 		},
-
+    musicData: {
+      handler(val, oldVal) {
+        localStorage.musics = JSON.stringify(val);
+      },
+      deep: true
+    }
 	},
 	beforeCreate() {
 		this.$store.commit('showMiniMusic',true);
@@ -120,6 +125,7 @@ export default {
       this.$store.commit('addMusic', {name: name, src: src, musicImgSrc: imgSrc});
       this.$store.commit('showMiniMusic', true);
       this.playIndex = index;
+      
 		},
 		// 解码
     strDecode(str) {
