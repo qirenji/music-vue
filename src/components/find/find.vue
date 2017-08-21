@@ -7,7 +7,7 @@
 					<i class="icon-search"></i>
 					<input v-model="keywords" @keyup.enter="toSearch(keywords)" @focus="inputFocus" :class="{'input-focus': !isShowHot}" type="text" placeholder="搜索歌曲">
 					<i @click="keywords=''" v-show="keywords !==''&&!isShowHot" class="icon-cancel"></i>
-					<div @click="isShowHot=true" v-show="!isShowHot" class="cancel-btn">取消</div>
+					<div @click="cancel()" v-show="!isShowHot" class="cancel-btn">取消</div>
 				</div>
 			</div>
 
@@ -100,6 +100,10 @@ export default {
 				this.musicList = [];
 			}
 		},
+    cancel() {
+      this.isShowHot = true;
+      this.keywords = '';
+    },
 		toSearch(keywords) {
 			if(keywords.trim()) {
 				this.isShowHistory = false;
@@ -304,7 +308,7 @@ export default {
           height: 22px;
           background: url('./loading.svg') no-repeat;
           background-size: contain;
-          animation: loading .6s linear infinite;
+          animation: loading 1.5s linear infinite;
           vertical-align: text-top;
           margin-right: 10px;
         }
@@ -383,6 +387,14 @@ export default {
     }
     66% {
       transform: scale(1);
+    }
+  }
+  @keyframes loading {
+    0% {
+      transform: rotate(0);
+    }
+    100% {
+      transform: rotate(360deg)
     }
   }
 

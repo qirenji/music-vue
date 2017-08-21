@@ -210,7 +210,7 @@ export default {
           background-size: contain;
           width: 22px;
           height: 22px;
-          vertical-align: bottom;
+          vertical-align: middle;
           cursor: pointer;
         }
       }
@@ -242,7 +242,7 @@ export default {
           background-size: contain;
           width: 22px;
           height: 22px;
-          vertical-align: bottom;
+          vertical-align: middle;
           cursor: pointer;
         }
       }
@@ -453,7 +453,6 @@ export default {
       .prev {
         flex: 1;
         display: flex;
-        height: 100%;
         justify-content: center;
         align-items: center;
 
@@ -463,7 +462,7 @@ export default {
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: bottom;
+          vertical-align: middle;
           cursor: pointer;
 
         }
@@ -471,31 +470,31 @@ export default {
       .play {
         flex: 1;
         display: flex;
-        height: 100%;
         justify-content: center;
         align-items: center;
-        .icon-play i{
-          display: inline-block;
-          background-repeat: no-repeat;
-          background-size: contain;
-          width: 40px;
-          height: 40px;
-          vertical-align: bottom;
-          cursor: pointer;
+        .icon-play{     
+          // padding-top: 5%;
+          margin: 6% auto;
+          i {
+            cursor: pointer;
+            background-size: contain;
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            vertical-align: top;
+          }
         }
         .play-icon {
-          background: url(./play.png) no-repeat;
-          background-size: contain;
+          background: url('./play.png') no-repeat;
+          
         }
         .pause-icon {
-          background: url(./pause.png) no-repeat;
-          background-size: contain;
+          background: url('./pause.png') no-repeat;
         }
       }
       .next {
         flex: 1;
         display: flex;
-        height: 100%;
         justify-content: center;
         align-items: center;
         .icon-next i{
@@ -504,7 +503,7 @@ export default {
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: bottom;
+          vertical-align: middle;
           cursor: pointer;
         }
       }

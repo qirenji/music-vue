@@ -120,10 +120,14 @@ export default {
     height: 70px;
     text-align: center;
     position: absolute;
+    display: flex;
     bottom: 0;
+    left: 0;
 
     .mini-music {
       display: flex;
+      flex: 1;
+      margin-left: 10px;
       height: 70px;
       line-height: 70px;
 
@@ -213,7 +217,7 @@ export default {
         }
       }
       .music-control {
-        flex: 1.5;
+        flex: 1;
         i {
           padding-right: 10px;
           width: 45px;
