@@ -312,6 +312,8 @@ export default {
       }
       img {
         position: absolute;
+        top: 0;
+        left: 0;
         z-index: 0;
         width: 100%;
         height: 100%;
@@ -456,12 +458,12 @@ export default {
         align-items: center;
 
         .icon-prev i{
-          display: table-cell;
+          display: inline-block;
           background: url('./prev.png') no-repeat;
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: middle;
+          vertical-align: top;
           cursor: pointer;
 
         }
@@ -473,12 +475,12 @@ export default {
         justify-content: center;
         align-items: center;
         .icon-play i{
-          display: table-cell;
+          display: inline-block;
           background-repeat: no-repeat;
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: middle;
+          vertical-align: top;
           cursor: pointer;
         }
         .play-icon {
@@ -497,12 +499,12 @@ export default {
         justify-content: center;
         align-items: center;
         .icon-next i{
-          display: table-cell;
+          display: inline-block;
           background: url('./next.png') no-repeat;
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: middle;
+          vertical-align: top;
           cursor: pointer;
         }
       }
