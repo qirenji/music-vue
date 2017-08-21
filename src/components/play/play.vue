@@ -463,7 +463,7 @@ export default {
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: top;
+          vertical-align: middle;
           cursor: pointer;
 
         }
@@ -480,7 +480,7 @@ export default {
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: top;
+          vertical-align: middle;
           cursor: pointer;
         }
         .play-icon {
@@ -504,7 +504,7 @@ export default {
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: top;
+          vertical-align: middle;
           cursor: pointer;
         }
       }
