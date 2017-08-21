@@ -114,6 +114,8 @@ export default {
 		},
 		playMusic(index,name,src,imgSrc) {
 			src = 'http://ws.stream.qqmusic.qq.com/'+src+'.m4a?fromtag=46';
+      console.log({name: name, src: src, imgSrc: imgSrc})
+      console.log({name: name, src: src, musicImgSrc: imgSrc})
       this.$store.commit('playMusic', {name: name, src: src, imgSrc: imgSrc});
       this.$store.commit('addMusic', {name: name, src: src, musicImgSrc: imgSrc});
       this.$store.commit('showMiniMusic', true);
@@ -167,7 +169,7 @@ export default {
         i.icon-search {
           position: absolute;
           top: 7px;
-          left: 6px;
+          left: 2%;
           display: inline-block;
           height: 20px;
           width: 20px;
@@ -177,7 +179,7 @@ export default {
         input {
           border-radius: 3px;
           border: none;
-          padding: 0 34px;
+          padding: 0 40px;
           width: 100%;
           height: 100%;
           font-size: 1rem;
@@ -186,7 +188,7 @@ export default {
         i.icon-cancel {
           position: absolute;
           top: 7px;
-          right: 21%;
+          right: 18%;
           display: inline-block;
           height: 20px;
           width: 20px;
@@ -194,11 +196,11 @@ export default {
           background-size: contain;
         }
         .input-focus {
-          width: 80%;
+          width: 85%;
         }
         .cancel-btn {
           vertical-align: top;
-          padding: 7px 10px;
+          padding: 7px 0px 7px 13px;
           height: 100%;
           background-color: none;
           display: inline-block;

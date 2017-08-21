@@ -196,8 +196,8 @@ export default {
 
     .header {
       position: relative;
-      z-index: 1;
-      flex: .9;
+      // z-index: 1;
+      flex: 1;
       display: flex;
       .back {
         flex: 1;
@@ -261,7 +261,7 @@ export default {
         z-index: 3;
         top: 0;
         right: 0;
-        color: #BDBDBD;
+        color: #999;
         padding: 0;
         margin: 0;
         height: auto;
@@ -400,6 +400,7 @@ export default {
         align-items: center;
         width: 100%;
         bottom: 8px;
+        left: 0px;
         text-align: center;
         color: rgba(255, 255, 255, .8);
         .start-time {
@@ -450,16 +451,17 @@ export default {
       .prev {
         flex: 1;
         display: flex;
+        height: 100%;
         justify-content: center;
         align-items: center;
 
         .icon-prev i{
-          display: inline-block;
+          display: table-cell;
           background: url('./prev.png') no-repeat;
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: bottom;
+          vertical-align: middle;
           cursor: pointer;
 
         }
@@ -467,15 +469,16 @@ export default {
       .play {
         flex: 1;
         display: flex;
+        height: 100%;
         justify-content: center;
         align-items: center;
         .icon-play i{
-          display: inline-block;
+          display: table-cell;
           background-repeat: no-repeat;
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: bottom;
+          vertical-align: middle;
           cursor: pointer;
         }
         .play-icon {
@@ -483,7 +486,6 @@ export default {
           background-size: contain;
         }
         .pause-icon {
-          display: inline-block;
           background: url(./pause.png) no-repeat;
           background-size: contain;
         }
@@ -491,15 +493,16 @@ export default {
       .next {
         flex: 1;
         display: flex;
+        height: 100%;
         justify-content: center;
         align-items: center;
         .icon-next i{
-          display: inline-block;
+          display: table-cell;
           background: url('./next.png') no-repeat;
           background-size: contain;
           width: 40px;
           height: 40px;
-          vertical-align: bottom;
+          vertical-align: middle;
           cursor: pointer;
         }
       }

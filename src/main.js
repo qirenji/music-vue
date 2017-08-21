@@ -19,7 +19,7 @@ const store = new Vuex.Store({
     skinColor: localStorage.skinColor || '#B72712',
     linkBorderIndex: '',
     DOM: {},
-    isPlaying: true,
+    isPlaying: false,
     isShowMiniMusic: true,
     isShowIndex: true,
     isShowAbout:false,
@@ -42,6 +42,20 @@ const store = new Vuex.Store({
         state.audio.src = state.musicData[index].src;
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc;
         state.audio.index = index;
+    },
+    addMusic(state, payload) {
+      for (let music of state.musicData) {
+        if (JSON.stringify(music) === JSON.stringify(payload)) {
+          return;
+        }
+      }
+      state.musicData.unshift(payload);
+    },
+    playMusic(state, payload) {
+      state.audio.name = payload.name;
+      state.audio.src = payload.src;
+      state.audio.musicImgSrc = payload.imgSrc;
+      state.isPlaying = true;
     },
     play(state, flag) {
       state.isPlaying = flag;
