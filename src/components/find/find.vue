@@ -10,13 +10,14 @@
 					<div @click="cancel()" v-show="!isShowHot" class="cancel-btn">取消</div>
 				</div>
 			</div>
-
+      <!-- 热门歌曲推荐 -->
 			<div v-if="isShowHot" class="hot">
 				<div class="keywords">
 					<div v-for="item in hotKeywords" @click="toSearch(item)" class="keyword">{{item}}</div>
 				</div>	
 			</div>
 
+      <!-- 搜索页面 -->
 			<div v-else class="search-list" @touchmove="$store.commit('showMiniMusic', false)">
 			
 				<div v-show="isShowHistory" v-for="(item,index) in searchHistory" class="history">
@@ -104,6 +105,7 @@ export default {
       this.isShowHot = true;
       this.keywords = '';
     },
+    // 搜索
 		toSearch(keywords) {
 			if(keywords.trim()) {
 				this.isShowHistory = false;
@@ -121,6 +123,7 @@ export default {
 					})
 			}
 		},
+    // 播放歌曲
 		playMusic(index,name,src,imgSrc) {
 			src = 'http://ws.stream.qqmusic.qq.com/'+src+'.m4a?fromtag=46';
       console.log({name: name, src: src, imgSrc: imgSrc})

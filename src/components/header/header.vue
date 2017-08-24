@@ -1,4 +1,5 @@
 <template>
+<!-- 头部页面 -->
 	<div :style="{backgroundColor: skinColor}" class="header">
 		<div class="name">
 			<span class="aside-menu" @click.stop.prevent="$store.commit('showIndex',false)"><i class="menu-icon"></i>

@@ -1,4 +1,5 @@
 <template>
+<!-- 个人中心页 -->
   <transition name="showRouter">
   	<div class="social">
       <div class="info">

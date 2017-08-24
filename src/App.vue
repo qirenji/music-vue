@@ -69,6 +69,7 @@ export default {
   },
   methods: {
     next() {
+      // 最后一首歌曲跳转到第一首
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
       this.$store.commit('toggleMusic', this.audio.index)
     }

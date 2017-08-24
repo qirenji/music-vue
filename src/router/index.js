@@ -19,7 +19,7 @@ export default new Router({
       component: MusicList
     },
     {
-      path: '/find',
+      path: '/find',//查找歌曲
       name: 'Find',
       component: Find
     },

@@ -1,4 +1,5 @@
 <template>
+<!-- 播放详情页 -->
 	<div class="play">
     <div :style="{backgroundColor: skinColor}" class="header">
       <div class="back">
