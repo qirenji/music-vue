@@ -2,6 +2,7 @@
   <div id="app">
 
     <transition name="show">
+      <!-- 列表页 -->
       <div v-show="isShowIndex" class="index">
 
         <VHeader></VHeader>
@@ -13,10 +14,12 @@
       </div>
     </transition>
 
+    <!-- 播放详情页 -->
     <transition name="showIndex">
       <Play v-show="!isShowIndex"></Play>
     </transition>
 
+    <!-- audio播放器 -->
     <audio :src="audio.src || (musicData[0]&&musicData[0].src)" :autoplay="isPlaying" ref="audio"></audio>
 
     <About v-show="isShowAbout"></About>
@@ -51,15 +54,18 @@ export default {
     this.$refs.audio.addEventListener('error', () => {this.next();});
   },
   computed: {
+    // 当前歌曲信息
     audio() {
       return this.$store.state.audio;
     },
+    // 音乐列表
     musicData() {
       return this.$store.state.musicData;
     },
     isPlaying() {
       return this.$store.state.isPlaying;
     },
+    // 是否显示列表页
     isShowIndex() {
       return this.$store.state.isShowIndex;
     },
@@ -68,8 +74,8 @@ export default {
     }
   },
   methods: {
+      // 下一曲
     next() {
-      // 最后一首歌曲跳转到第一首
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
       this.$store.commit('toggleMusic', this.audio.index)
     }

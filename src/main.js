@@ -15,14 +15,18 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
+    // 音乐列表信息
     musicData: [],
     skinColor: localStorage.skinColor || '#B72712',
+    // tab选项值
     linkBorderIndex: '',
+    // 获取audio
     DOM: {},
     isPlaying: false,
     isShowMiniMusic: true,
     isShowIndex: true,
     isShowAbout:false,
+    // 当前歌曲信息
     audio: {
       name: '',
       src: '',
@@ -31,18 +35,22 @@ const store = new Vuex.Store({
     }
   },
   mutations: {
+    // 切换tab标签
     changeLinkBorderIndex(state, index) {
       state.linkBorderIndex = index;
     },
+    // 找到audio
     findDOM(state, payload) {
       state.DOM[payload.name] = payload.dom;
     },
+    // 切换歌曲
     toggleMusic(state, index) {
         state.audio.name = state.musicData[index].name;
         state.audio.src = state.musicData[index].src;
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc;
         state.audio.index = index;
     },
+    // 添加歌曲
     addMusic(state, payload) {
       for (let music of state.musicData) {
         if (JSON.stringify(music) === JSON.stringify(payload)) {
@@ -51,6 +59,7 @@ const store = new Vuex.Store({
       }
       state.musicData.unshift(payload);
     },
+    // 播放歌曲
     playMusic(state, payload) {
       state.audio.name = payload.name;
       state.audio.src = payload.src;
@@ -80,6 +89,7 @@ const store = new Vuex.Store({
     }
   },
   actions: {
+    // 初始化-获取音乐播放信息
   	getData({commit,state}) {
       if (localStorage.musics !== '[]' && localStorage.musics) {
         state.musicData = JSON.parse(localStorage.musics);
@@ -94,6 +104,7 @@ const store = new Vuex.Store({
               }
             })
             .then(() => {
+              // 播放第一首歌曲
               commit('toggleMusic',0)
             });
         resolve();

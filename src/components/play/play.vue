@@ -14,7 +14,7 @@
     </div>
 
     <div class="content">
-
+      <!-- 详情页播放列表 -->
       <transition name="fade">
         <div v-show="isShowMusicList" class="music-list">
           <ul>
@@ -22,11 +22,11 @@
           </ul>
         </div>
       </transition>
-
+      <!-- 播放页背景图-虚 -->
       <img @click.stop.prevent="isShowSkinColors=false;isShowMusicList=false" :src="audio.musicImgSrc ||(musicData[0]&&musicData[0].musicImgSrc)" alt="">
-  
+      <!-- 小背景实图 -->
       <div @click.stop.prevent="isShowSkinColors=false;isShowMusicList=false" class="img"><img :src="audio.musicImgSrc || (musicData[0]&&musicData[0].musicImgSrc)" alt=""></div>
-
+      <!-- 播放进度条 -->
       <div class="progress">
         <span class="start-time">{{transformTime(currentTime)}}</span>
         <div @click="changeTime($event)" @touchmove="touchMove($event)" @touchend="touchEnd($event)" ref="progressBar" class="progress-bar">
@@ -34,7 +34,7 @@
         </div>
         <span class="end-time">{{transformTime(totalTime)}}</span>
       </div>
-  
+      <!-- 更改皮肤 -->
       <div class="skin">
         <transition name="slide-fade">
           <div class="skin-colors" v-show="isShowSkinColors">
@@ -48,7 +48,7 @@
         <div @click="showSkinColor" :class="{'icon-skin-red': skinColor === '#B72712','icon-skin-blue': skinColor === '#1565C0','icon-skin-black': skinColor === '#212121','icon-skin-green': skinColor === '#1B5E20'}" class="icon-skin"></div>
       </div>
     </div>
-
+    <!-- 播放按钮 -->
     <div :style="{backgroundColor: skinColor}" class="footer">
       <div class="prev">
         <div class="icon-prev"><i @click="prev"></i></div>
@@ -81,15 +81,18 @@ export default {
     skinColor() {
       return this.$store.state.skinColor;
     },
+    // 获取当前音乐信息
     audio() {
       return this.$store.state.audio;
     },
+    // 获取播放器列表信息
     musicData() {
       return this.$store.state.musicData;
     },
     isPlaying() {
       return this.$store.state.isPlaying;
     },
+    // 获取audio
     DOM() {
       return this.$store.state.DOM;
     }
@@ -101,6 +104,7 @@ export default {
       this.isShowSkinColors = false;
       this.isShowMusicList = false
     },
+    // 播放/暂停
     toggleMusic(index) {
       this.$store.commit('toggleMusic', index);
       this.$store.commit('play', true);
@@ -108,6 +112,7 @@ export default {
         this.isShowMusicList = false;
       }, 100);
     },
+    // 格式化时间
     transformTime(seconds) {
       let m,s;
       m = Math.floor(seconds/60);
@@ -116,6 +121,7 @@ export default {
       s = s.toString().length == 1?('0'+s) : s;
       return m + ':' +s;
     },
+    // 调整播放时间
     changeTime(event) {
       let progressBar = this.$refs.progressBar;
       let coordStart = progressBar.getBoundingClientRect().left;
@@ -125,6 +131,7 @@ export default {
       this.nativeAudio.play();
       this.$store.commit('play', true);
     },
+    // 手机调整时间
     touchMove(event) {
       let progressBar = this.$refs.progressBar;
       let coordStart = progressBar.getBoundingClientRect().left;
@@ -144,14 +151,17 @@ export default {
     showSkinColor() {
       this.isShowSkinColors = !this.isShowSkinColors;
     },
+    // 播放前一首
     prev() {
       this.audio.index = this.audio.index === 0?this.musicData.length - 1:(--this.audio.index);
       this.$store.commit('toggleMusic', this.audio.index);
     },
+    // 播放
     play() {
       this.$store.commit('play', !this.isPlaying);
       !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play();
     },
+    // 播放后一首
     next() {
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
       this.$store.commit('toggleMusic', this.audio.index);

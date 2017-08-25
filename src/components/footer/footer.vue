@@ -7,6 +7,7 @@
   			</div>
   			<div class="music-name">
   				<p @click="showPlay">{{audio.name || (musicData[0]&&musicData[0].name)}}</p>
+          <!-- 进度条 -->
   				<div class="progress">
   					<span class="start">{{transformTime(currentTime)}}</span>
   					<div @click="changeTime($event)" @touchmove="touchMove($event)" @touchend="touchEnd($event)" ref="progressBar" class="progress-bar">
@@ -15,6 +16,7 @@
   					<span class="end">{{transformTime(totalTime)}}</span>
   				</div>
   			</div>
+        <!-- 播放按钮 -->
   			<div class="music-control">
   				<i @click="play()" v-bind:class="[isPlaying ? 'pause-icon' : 'play-icon']"></i>
   			</div>
@@ -57,6 +59,7 @@ export default {
 		}
 	},
 	mounted() {
+    // 选中audio，获取信息
 		this.nativeAudio = document.querySelector('audio');
 		this.nativeAudio.addEventListener('play', () => {
 			this.totalTime = this.nativeAudio.duration;
@@ -68,6 +71,7 @@ export default {
 		})
 	},
 	methods:{
+    // 转换时间
 		transformTime(seconds) {
       let m, s;
       m = Math.floor(seconds / 60);
@@ -76,10 +80,12 @@ export default {
       s = s.toString().length == 1 ? ('0' + s) : s;
       return m + ':' + s;
     },
+    // 播放／暂停
     play() {
       this.$store.commit('play', !this.isPlaying);
       !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play();
     },
+    // 调整播放进度
     changeTime(event) {
       let progressBar = this.$refs.progressBar;
       let coordStart = progressBar.getBoundingClientRect().left;
@@ -89,6 +95,7 @@ export default {
       this.nativeAudio.play();
       this.$store.commit('play',true);
     },
+    // 手机移动进度条
     touchMove(event) {
     	let progressBar = this.$refs.progressBar;
       let coordStart = progressBar.getBoundingClientRect().left;
@@ -101,6 +108,7 @@ export default {
     	this.nativeAudio.play();
     	this.$store.commit('play',true);
     },
+    // 播放详情页
     showPlay() {
     	if(this.isshowAsideMenu) {
     		return;

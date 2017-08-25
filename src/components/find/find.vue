@@ -1,7 +1,7 @@
 <template>
 	<transition name="showRouter">
 		<div class="find">
-
+      <!-- 搜索输入框 -->
 			<div class="search-input">
 				<div class="input">
 					<i class="icon-search"></i>
@@ -29,7 +29,10 @@
 				<div v-show="isShowHistory&&searchHistory.length" @click="searchHistory=[]" class="tips">清除搜索记录</div>
 
 				<div v-show="isLoading" class="loading"><i class="icon-loading"></i>搜索中...</div>
-				<div @click="playMusic(index, (item.f.split('|')[3]&&strDecode(item.f.split('|')[3].replace(/amp\;/g, '')).replace(/\;/g, '/') || '佚名')+' - '+strDecode(item.fsong), item.f.split('|')[0], item.f.split('|')[4]&&'http://imgcache.qq.com/music/photo/album_300/'+item.f.split('|')[4]%100+'/300_albumpic_'+item.f.split('|')[4]+'_0.jpg')" v-for="(item, index) of musicList" class="music">
+        <!-- 返回的数据内容 item.f = 202881196|空|4362|林志炫|2162463|悟空传 电影音乐原声带|2794162|324|4|1|0|12974684|5189985|0|0|31749335|31792551|7434354|7825141|0|002xj4Xw0Hbpia|000f7diK2mDS3Z|002RyzDh1e4Z1b|0|4009"
+        搜索地址http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n='+ num +'&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w= + '关键字'
+         -->
+				<div v-for="(item, index) of musicList" @click="playMusic(index, (item.f.split('|')[3]&&strDecode(item.f.split('|')[3].replace(/amp\;/g, '')).replace(/\;/g, '/') || '佚名')+' - '+strDecode(item.fsong), item.f.split('|')[0], item.f.split('|')[4]&&'http://imgcache.qq.com/music/photo/album_300/'+item.f.split('|')[4]%100+'/300_albumpic_'+item.f.split('|')[4]+'_0.jpg')" class="music">
           <div class="icon-music">
             <img :src="item.f.split('|')[4]&&'http://imgcache.qq.com/music/photo/album_300/'+item.f.split('|')[4]%100+'/300_albumpic_'+item.f.split('|')[4]+'_0.jpg'" alt="microzz.com">
           </div>
@@ -56,6 +59,7 @@ export default {
 			isShowHot: true,
 			isShowHistory: false,
 			hotKeywords: [],
+      // 播放图标控制
 			playIndex: '',
 			isLoading: false,
 			musicList: [],
@@ -63,6 +67,7 @@ export default {
 		}
 	},
 	computed: {
+    // 播放列表
 		musicData() {
 			return this.$store.state.musicData;
 		}
@@ -74,6 +79,7 @@ export default {
 			},
 			deep:true
 		},
+    // 播放列表
     musicData: {
       handler(val, oldVal) {
         localStorage.musics = JSON.stringify(val);
@@ -91,6 +97,7 @@ export default {
 		})
 	},
 	methods: {
+    // 搜索框focus操作
 		inputFocus() {
 			if(this.keywords.trim()) {
 				return;
@@ -101,6 +108,7 @@ export default {
 				this.musicList = [];
 			}
 		},
+    // 取消搜索
     cancel() {
       this.isShowHot = true;
       this.keywords = '';
@@ -118,6 +126,7 @@ export default {
 					.then(res => res.data.data.song)
 					.then(song => {
 						this.musicList = song.list;
+            console.log(this.musicList);
 						this.isLoading = false;
 						this.searchHistory.unshift(keywords);
 					})

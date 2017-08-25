@@ -24,7 +24,7 @@ export default new Router({
       component: Find
     },
     {
-      path: '/social',
+      path: '/social', //个人中心页
       name: 'Social',
       component: Social
     }

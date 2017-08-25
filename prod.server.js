@@ -21,6 +21,7 @@ router.get('/music-data',(req, res) => {
 });
 
 router.get('/hot', (req, res) => {
+  // 热门关键词
   let hotKeywords = ['张杰', '赵雷', '李健', '林志炫', '张碧晨', '梁博', '周笔畅', '张靓颖', '陈奕迅', '周杰伦', '王力宏', 'TFBoys', '李玉刚', '魏晨', '薛之谦'];
   let rHot = new Array(6);
   for(let i=0; i<rHot.length;i++){
@@ -38,6 +39,7 @@ router.get('/search/:num/:name', (req, res) => {
   function search(n, keywords) {
     return new Promise((resolve, reject) => {
       let searchResult = '';
+      // 参考至https://github.com/ccchangkong/article/issues/23
       let url = encodeURI('http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n='+ n +'&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w='+ keywords);
       http.get(url, response => {
         response.on('data', data => {
