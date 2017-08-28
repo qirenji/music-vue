@@ -1,6 +1,21 @@
 {
   "musicData": [
     {
+      "name": "田馥甄 - 小幸运 (Live)",
+      "src": "http://music.163.com/outchain/player?type=2&id=422104315",
+      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/94/300_albumpic_1799594_0.jpg"
+    },
+    {
+      "name": "赵雷 - 成都",
+      "src": "http://ws.stream.qqmusic.qq.com/108963136.m4a?fromtag=46",
+      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/57/300_albumpic_1666157_0.jpg"
+    },
+    {
+      "name": "孙燕姿 - 我怀念的",
+      "src": "http://ws.stream.qqmusic.qq.com/5211338.m4a?fromtag=46",
+      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/2/300_albumpic_15902_0.jpg"
+    },
+    {
       "name": "李玉刚 - 刚好遇见你",
       "src": "http://ws.stream.qqmusic.qq.com/109191643.m4a?fromtag=46",
       "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/68/300_albumpic_1686568_0.jpg"
@@ -24,21 +39,6 @@
       "name": "任素汐 - 我要你",
       "src":"http://ws.stream.qqmusic.qq.com/108985785.m4a?fromtag=46",
       "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/88/300_albumpic_1660288_0.jpg"
-    },
-    {
-      "name": "田馥甄 - 小幸运 (Live)",
-      "src": "http://music.163.com/outchain/player?type=2&id=422104315",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/94/300_albumpic_1799594_0.jpg"
-    },
-    {
-      "name": "赵雷 - 成都",
-      "src": "http://ws.stream.qqmusic.qq.com/108963136.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/57/300_albumpic_1666157_0.jpg"
-    },
-    {
-      "name": "孙燕姿 - 我怀念的",
-      "src": "http://ws.stream.qqmusic.qq.com/5211338.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/2/300_albumpic_15902_0.jpg"
     }
   ]
 }
