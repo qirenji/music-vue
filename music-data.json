@@ -1,6 +1,16 @@
 {
   "musicData": [
     {
+      "name": "韩安旭 - 多幸运",
+      "src":"http://ws.stream.qqmusic.qq.com/104862561.m4a?fromtag=46",
+      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/39/300_albumpic_1190139_0.jpg"
+    },
+    {
+      "name": "任素汐 - 我要你",
+      "src":"http://ws.stream.qqmusic.qq.com/108985785.m4a?fromtag=46",
+      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/88/300_albumpic_1660288_0.jpg"
+    },
+    {
       "name": "田馥甄 - 小幸运 (Live)",
       "src": "http://music.163.com/outchain/player?type=2&id=422104315",
       "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/94/300_albumpic_1799594_0.jpg"
@@ -29,16 +39,6 @@
       "name": "李健 - 假如爱有天意",
       "src": "http://ws.stream.qqmusic.qq.com/105670451.m4a?fromtag=46",
       "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/65/300_albumpic_1061065_0.jpg"
-    },
-    {
-      "name": "韩安旭 - 多幸运",
-      "src":"http://ws.stream.qqmusic.qq.com/104862561.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/39/300_albumpic_1190139_0.jpg"
-    },
-    {
-      "name": "任素汐 - 我要你",
-      "src":"http://ws.stream.qqmusic.qq.com/108985785.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/88/300_albumpic_1660288_0.jpg"
     }
   ]
 }
