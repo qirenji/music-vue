@@ -18,6 +18,7 @@ node prod.server.js -----打包后运行
 
 vue学习项目，基于qq音乐API，完成音乐播放和搜索等。
 
+具体API接口查看 https://github.com/ccchangkong/article/issues/23
 
 ## 实现功能
 - [x] 音乐播放
