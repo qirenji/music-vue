@@ -11,9 +11,14 @@
       "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/88/300_albumpic_1660288_0.jpg"
     },
     {
-      "name": "田馥甄 - 小幸运 (Live)",
-      "src": "http://music.163.com/outchain/player?type=2&id=422104315",
+      "name": "田馥甄 - 小幸运",
+      "src": "http://ws.stream.qqmusic.qq.com/200281166.m4a?fromtag=46",
       "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/94/300_albumpic_1799594_0.jpg"
+    },
+    {
+      "name": "周杰伦 - 告白气球",
+      "src": "http://ws.stream.qqmusic.qq.com/107192078.m4a?fromtag=46",
+      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/91/300_albumpic_1458791_0.jpg"
     },
     {
       "name": "赵雷 - 成都",

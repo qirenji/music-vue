@@ -45,9 +45,9 @@ export default {
 		isPlaying() {
 			return this.$store.state.isPlaying;
 		},
-		DOM() {
-			return this.$store.state.DOM;
-		},
+		// DOM() {
+		// 	return this.$store.state.DOM;
+		// },
 		isShowMiniMusic() {
 			return this.$store.state.isShowMiniMusic;
 		},
@@ -83,7 +83,7 @@ export default {
     // 播放／暂停
     play() {
       this.$store.commit('play', !this.isPlaying);
-      !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play();
+      // !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play();
     },
     // 调整播放进度
     changeTime(event) {
@@ -100,10 +100,10 @@ export default {
     	let progressBar = this.$refs.progressBar;
       let coordStart = progressBar.getBoundingClientRect().left;
       let coordEnd = event.touches[0].pageX;
-      this.$refs.now.style.width = ((coordEnd-coordStart) / progressbar.offsetWidth).toFixed(3) * 100 + '%';
+      this.$refs.now.style.width = ((coordEnd-coordStart) / progressBar.offsetWidth).toFixed(3) * 100 + '%';
     },
     touchEnd(event) {
-    	thi.nativeAudio.currentTime = this.$refs.now.style.width.replace('%','')/100 * this.nativeAudio.duration;
+    	this.nativeAudio.currentTime = this.$refs.now.style.width.replace('%','')/100 * this.nativeAudio.duration;
     	this.currentTime = this.nativeAudio.currentTime;
     	this.nativeAudio.play();
     	this.$store.commit('play',true);

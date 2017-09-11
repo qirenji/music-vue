@@ -49,7 +49,7 @@ export default {
     this.$store.dispatch('getData');
   },
   mounted() {
-    this.$store.commit('findDOM',{name: 'audio',dom:this.$refs.audio});
+    // this.$store.commit('findDOM',{name: 'audio',dom:this.$refs.audio});
     this.$refs.audio.addEventListener('ended',() => {this.next();});
     this.$refs.audio.addEventListener('error', () => {this.next();});
   },
@@ -78,6 +78,11 @@ export default {
     next() {
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
       this.$store.commit('toggleMusic', this.audio.index)
+    }
+  },
+  watch: {
+    isPlaying(val) {
+      !val? this.$refs.audio.pause() : this.$refs.audio.play();
     }
   }
 }

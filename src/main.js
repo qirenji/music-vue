@@ -21,7 +21,7 @@ const store = new Vuex.Store({
     // tab选项值
     linkBorderIndex: '',
     // 获取audio
-    DOM: {},
+    // DOM: {},
     isPlaying: false,
     isShowMiniMusic: true,
     isShowIndex: true,
@@ -40,9 +40,9 @@ const store = new Vuex.Store({
       state.linkBorderIndex = index;
     },
     // 找到audio
-    findDOM(state, payload) {
-      state.DOM[payload.name] = payload.dom;
-    },
+    // findDOM(state, payload) {
+    //   state.DOM[payload.name] = payload.dom;
+    // },
     // 切换歌曲
     toggleMusic(state, index) {
         state.audio.name = state.musicData[index].name;

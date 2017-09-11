@@ -19,9 +19,9 @@ export default {
 		musicData() {
 			return this.$store.state.musicData;
 		},
-    DOM() {
-      return this.$store.state.DOM;
-    },
+    // DOM() {
+    //   return this.$store.state.DOM;
+    // },
     isPlaying() {
       return this.$store.state.isPlaying;
     }
@@ -36,10 +36,10 @@ export default {
     //点击切换音乐
     toggleMusic(index) {
       if(this.$store.state.audio.index === index){
-        this.DOM.audio.paused ? this.DOM.audio.play() : this.DOM.audio.pause();
+        // this.DOM.audio.paused ? this.DOM.audio.play() : this.DOM.audio.pause();
         this.$store.commit('play', !this.isPlaying)
       } else {
-        this.DOM.audio.play();
+        // this.DOM.audio.play();
         this.$store.commit('play',true);
       }
       this.$store.commit('toggleMusic', index);
@@ -76,7 +76,7 @@ export default {
     padding-top: 4px;
     padding-left: 4px;
     padding-right: 4px;
-    // padding-bottom: 40px;
+    padding-bottom: 70px;
     flex:8;
     overflow: auto;
     .music-item + .music-item {

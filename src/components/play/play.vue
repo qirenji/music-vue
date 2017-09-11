@@ -93,9 +93,9 @@ export default {
       return this.$store.state.isPlaying;
     },
     // 获取audio
-    DOM() {
-      return this.$store.state.DOM;
-    }
+    // DOM() {
+    //   return this.$store.state.DOM;
+    // }
   },
   methods: {
     back() {
@@ -159,7 +159,7 @@ export default {
     // 播放
     play() {
       this.$store.commit('play', !this.isPlaying);
-      !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play();
+      // !this.isPlaying ? this.DOM.audio.pause() : this.DOM.audio.play();
     },
     // 播放后一首
     next() {
@@ -340,6 +340,7 @@ export default {
           width: 100%;
           height: 100%;
           border-radius: 150px;
+          animation: loading 10s linear infinite;
         }
       }
       .skin {
@@ -519,7 +520,15 @@ export default {
         }
       }
     }
-
+    
+    @keyframes loading{
+      0% {
+        transform: rotate(0);
+      }
+      100%{
+        transform:rotate(360deg);
+      }
+    }
   }
 </style>
 
