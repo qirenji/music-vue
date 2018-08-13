@@ -1,49 +1,39 @@
 {
   "musicData": [
     {
-      "name": "韩安旭 - 多幸运",
-      "src":"http://ws.stream.qqmusic.qq.com/104862561.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/39/300_albumpic_1190139_0.jpg"
+      "name": "马良 - 往后余生",
+      "src":"http://fs.w.kugou.com/201808131741/db483c912290b3edbb4154f7544ee824/G125/M0A/02/0F/vQ0DAFrdr1qAYUm1ACVWYYtNg0A444.mp3",
+      "musicImgSrc": "http://singerimg.kugou.com/uploadpic/softhead/400/20180522/20180522221036544.jpg"
     },
     {
-      "name": "任素汐 - 我要你",
-      "src":"http://ws.stream.qqmusic.qq.com/108985785.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/88/300_albumpic_1660288_0.jpg"
+      "name": "Olly Murs - That Girl",
+      "src":"http://fs.w.kugou.com/201808131749/e88df8ead886e2a93ae4eb89032165a6/G083/M02/13/0F/84YBAFglMBOAEqOBACsvZXO7De4868.mp3",
+      "musicImgSrc": "http://singerimg.kugou.com/uploadpic/softhead/400/20121113/20121113170456141.jpg"
     },
     {
       "name": "田馥甄 - 小幸运",
-      "src": "http://ws.stream.qqmusic.qq.com/200281166.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/94/300_albumpic_1799594_0.jpg"
+      "src": "http://fs.w.kugou.com/201808131814/22dd1e5c84bca4083cd3269818684a59/G106/M07/1B/07/qg0DAFn60CqAVl97AD0efHlNZtk197.mp3",
+      "musicImgSrc": "http://singerimg.kugou.com/uploadpic/softhead/400/20170818/20170818114929411.jpg"
     },
     {
       "name": "周杰伦 - 告白气球",
-      "src": "http://ws.stream.qqmusic.qq.com/107192078.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/91/300_albumpic_1458791_0.jpg"
+      "src": "http://fs.w.kugou.com/201808131815/ae7471be4e70c3a8f7491fc0e5451be1/G063/M03/06/11/34YBAFdskzmAUMlOADSMOxgm3l4714.mp3",
+      "musicImgSrc": "http://singerimg.kugou.com/uploadpic/softhead/400/20180515/20180515002522714.jpg"
     },
     {
-      "name": "赵雷 - 成都",
-      "src": "http://ws.stream.qqmusic.qq.com/108963136.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/57/300_albumpic_1666157_0.jpg"
+      "name": "烟把儿乐队 - 纸短情长 (完整版)",
+      "src": "http://fs.w.kugou.com/201808131725/23f25e7a2918921387d0a80c3d6e715b/G125/M01/00/1F/HYcBAFrByXCATVNeACpLIMUIOec727.mp3",
+      "musicImgSrc": "http://singerimg.kugou.com/uploadpic/softhead/400/20180424/20180424142640371.jpg"
     },
     {
       "name": "孙燕姿 - 我怀念的",
-      "src": "http://ws.stream.qqmusic.qq.com/5211338.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/2/300_albumpic_15902_0.jpg"
+      "src": "http://fs.w.kugou.com/201808131819/c9ecd48398942af21645fff53bb7267b/G003/M0A/0E/17/o4YBAFS8PP2AALPyAEaWM7Th5Ro505.mp3",
+      "musicImgSrc": "http://singerimg.kugou.com/uploadpic/softhead/400/20161121/20161121172906593.jpg"
     },
     {
-      "name": "李玉刚 - 刚好遇见你",
-      "src": "http://ws.stream.qqmusic.qq.com/109191643.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/68/300_albumpic_1686568_0.jpg"
-    },
-    {
-      "name": "Jam - 七月上",
-      "src": "http://ws.stream.qqmusic.qq.com/104780794.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/23/300_albumpic_8623_0.jpg"
-    },
-    {
-      "name": "李健 - 假如爱有天意",
-      "src": "http://ws.stream.qqmusic.qq.com/105670451.m4a?fromtag=46",
-      "musicImgSrc": "http://imgcache.qq.com/music/photo/album_300/65/300_albumpic_1061065_0.jpg"
+      "name": "王北车 - 陷阱",
+      "src": "http://fs.w.kugou.com/201808131719/650296f218ff89873a96a1719458d769/G090/M00/17/11/-oYBAFtDYLGAbhRwAEScL1VjYB4055.mp3",
+      "musicImgSrc": "http://singerimg.kugou.com/uploadpic/softhead/400/20180711/20180711092019272.jpg"
     }
   ]
 }

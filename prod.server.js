@@ -33,14 +33,11 @@ router.get('/hot', (req, res) => {
   res.json(rHot);
 });
 
-router.get('/search/:num/:name', (req, res) => {
-  let num = req.params.num;
-  let name = req.params.name;
-  function search(n, keywords) {
+function search(url) {
     return new Promise((resolve, reject) => {
       let searchResult = '';
-      // 参考至https://github.com/ccchangkong/article/issues/23
-      let url = encodeURI('http://s.music.qq.com/fcgi-bin/music_search_new_platform?t=0&n='+ n +'&aggr=1&cr=1&loginUin=0&format=json&inCharset=GB2312&outCharset=utf-8&notice=0&platform=jqminiframe.json&needNewCode=0&p=1&catZhida=0&remoteplace=sizer.newclient.next_song&w='+ keywords);
+      // 参考至https://blog.csdn.net/jamin2018/article/details/79157213
+      
       http.get(url, response => {
         response.on('data', data => {
           searchResult += data;
@@ -51,13 +48,33 @@ router.get('/search/:num/:name', (req, res) => {
       })
     })
   }
-
-  search(num, name)
+http://songsearch.kugou.com/song_search_v2?callback=jQuery19107655316341116605_1497970603262&keyword=%E8%B5%B5%E9%9B%B7&page=1&pagesize=10&userid=-1&clientver=&platform=WebFilter&tag=em&filter=2&iscorrection=1&privilege_filter=0%EF%BC%9B
+router.get('/search/:num/:keywords', (req, res) => {
+  let keywords = req.params.keywords;
+  let url = encodeURI('http://songsearch.kugou.com/song_search_v2?page=1&pagesize=10&userid=-1&clientver=&platform=WebFilter&tag=em&filter=2&iscorrection=1&privilege_filter=0&keywords='+ keywords);
+  
+  search(url)
     .then(searchResult => {
-      res.json(JSON.parse(searchResult));
+      console.log(searchResult);
+      let result = JSON.parse(searchResult)
+      res.json(result.data.lists);
     })
 
 });
+
+// 获取播放信息
+router.get('/play/:hash/', (req, res) => {
+  let hash = req.params.hash;
+  // 获取歌曲信息
+  let url = encodeURI('http://www.kugou.com/yy/index.php?r=play/getdata&hash='+ hash);
+  
+  search(url)
+    .then(result => {
+      res.json(JSON.parse(result));
+    })
+  
+});
+
 app.use('/api', router);
 
 
