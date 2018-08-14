@@ -120,7 +120,7 @@ export default {
 				this.isLoading = true;
 				this.$store.commit('showMiniMusic',false);
 				this.keywords = keywords;
-				this.axios.get('/api/search/100/' + keywords)
+				this.axios.get('/api/search',{params:{'keywords':keywords}})
 					.then(res => res.data)
 					.then(song => {
 						this.musicList = song;
@@ -132,7 +132,7 @@ export default {
 		},
     // 播放歌曲
 		playMusic(index,item) {
-			this.axios.get('/api/play/' + item.FileHash)
+			this.axios.get('/api/play',{params:{'hash':item.FileHash}})
       .then(res => res.data.data)
       .then(res => {
         let name = res.audio_name;

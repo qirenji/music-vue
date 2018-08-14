@@ -13,11 +13,11 @@
   ],
   "deploy": {
     "production": {
-      "user": "qrj",
-      "host": ["60.205.181.124"],
-      "port": "22",
+      "user": "root",
+      "host": ["95.169.0.2"],
+      "port": "27927",
       "ref": "origin/master",
-      "repo": "git@git.oschina.net:qirenji/music-vue.git",
+      "repo": "git@github.com:qirenji/music-vue.git",
       "path": "/www/music/production",
       "ssh_options": "StrictHostKeyChecking=no",
       "post-deploy": "npm install --registry=https://registry.npm.taobao.org && pm2 startOrRestart ecosystem.json --env production",

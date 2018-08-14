@@ -33,29 +33,28 @@ router.get('/hot', (req, res) => {
   res.json(rHot);
 });
 
-function search(url) {
-    return new Promise((resolve, reject) => {
-      let searchResult = '';
-      // 参考至https://blog.csdn.net/jamin2018/article/details/79157213
-      
-      http.get(url, response => {
-        response.on('data', data => {
-          searchResult += data;
-        });
-        response.on('end', () => {
-          resolve(searchResult);
-        })
+function searchUrl(url) {
+  return new Promise((resolve, reject) => {
+    let searchResult = '';
+    // 参考至https://blog.csdn.net/jamin2018/article/details/79157213
+    http.get(url, response => {
+      response.on('data', data => {
+        searchResult += data;
+      });
+      response.on('end', () => {
+        resolve(searchResult);
       })
     })
-  }
-http://songsearch.kugou.com/song_search_v2?callback=jQuery19107655316341116605_1497970603262&keyword=%E8%B5%B5%E9%9B%B7&page=1&pagesize=10&userid=-1&clientver=&platform=WebFilter&tag=em&filter=2&iscorrection=1&privilege_filter=0%EF%BC%9B
-router.get('/search/:num/:keywords', (req, res) => {
-  let keywords = req.params.keywords;
-  let url = encodeURI('http://songsearch.kugou.com/song_search_v2?page=1&pagesize=10&userid=-1&clientver=&platform=WebFilter&tag=em&filter=2&iscorrection=1&privilege_filter=0&keywords='+ keywords);
-  
-  search(url)
+  })
+}
+
+// 获取搜索信息
+router.get('/search', (req, res) => {
+
+  let keywords = req.query.keywords;
+  let url = encodeURI('http://songsearch.kugou.com/song_search_v2?page=1&pagesize=10&userid=-1&clientver=&platform=WebFilter&tag=em&filter=2&iscorrection=1&privilege_filter=0&keyword='+ keywords);
+  searchUrl(url)
     .then(searchResult => {
-      console.log(searchResult);
       let result = JSON.parse(searchResult)
       res.json(result.data.lists);
     })
@@ -63,12 +62,12 @@ router.get('/search/:num/:keywords', (req, res) => {
 });
 
 // 获取播放信息
-router.get('/play/:hash/', (req, res) => {
-  let hash = req.params.hash;
+router.get('/play', (req, res) => {
+  let hash = req.query.hash;
   // 获取歌曲信息
   let url = encodeURI('http://www.kugou.com/yy/index.php?r=play/getdata&hash='+ hash);
   
-  search(url)
+  searchUrl(url)
     .then(result => {
       res.json(JSON.parse(result));
     })
