@@ -44,7 +44,7 @@ const store = new Vuex.Store({
     //   state.DOM[payload.name] = payload.dom;
     // },
     // 切换歌曲
-    toggleMusic(state, payload) {
+    toggleMusic(state, index) {
         // state.audio.name = payload.res.audio_name;
         // state.audio.src = payload.res.play_url;
         // state.audio.musicImgSrc = payload.res.img;
@@ -52,7 +52,7 @@ const store = new Vuex.Store({
         state.audio.name = state.musicData[index].name;
         state.audio.src = state.musicData[index].src;
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc;
-        state.audio.index = payload;
+        state.audio.index = index;
     },
     // 添加歌曲
     addMusic(state, payload) {
