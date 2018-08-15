@@ -121,10 +121,10 @@ export default {
 				this.$store.commit('showMiniMusic',false);
 				this.keywords = keywords;
 				this.axios.get('/api/search',{params:{'keywords':keywords}})
-					.then(res => res.data)
+					.then(res => res)
 					.then(song => {
 						this.musicList = song;
-            console.log(this.musicList);
+            console.log(this.song);
 						this.isLoading = false;
 						this.searchHistory.unshift(keywords);
 					})

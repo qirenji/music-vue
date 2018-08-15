@@ -50,15 +50,13 @@ function searchUrl(url) {
 
 // 获取搜索信息
 router.get('/search', (req, res) => {
-
   let keywords = req.query.keywords;
-  let url = encodeURI('http://songsearch.kugou.com/song_search_v2?page=1&pagesize=10&userid=-1&clientver=&platform=WebFilter&tag=em&filter=2&iscorrection=1&privilege_filter=0&keyword='+ keywords);
+  let url = encodeURI('http://songsearch.kugou.com/song_search_v2?page=1&pagesize=20&platform=WebFilter&userid=-1&iscorrection=1&privilege_filter=0&filter=2&keyword='+ keywords);
   searchUrl(url)
     .then(searchResult => {
       let result = JSON.parse(searchResult)
-      res.json(result.data.lists);
+      res.json(result);
     })
-
 });
 
 // 获取播放信息
