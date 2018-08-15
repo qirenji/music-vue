@@ -44,11 +44,15 @@ const store = new Vuex.Store({
     //   state.DOM[payload.name] = payload.dom;
     // },
     // 切换歌曲
-    toggleMusic(state, index) {
+    toggleMusic(state, payload) {
+        // state.audio.name = payload.res.audio_name;
+        // state.audio.src = payload.res.play_url;
+        // state.audio.musicImgSrc = payload.res.img;
+        // state.audio.index = payload.index;
         state.audio.name = state.musicData[index].name;
         state.audio.src = state.musicData[index].src;
         state.audio.musicImgSrc = state.musicData[index].musicImgSrc;
-        state.audio.index = index;
+        state.audio.index = payload;
     },
     // 添加歌曲
     addMusic(state, payload) {
@@ -109,6 +113,24 @@ const store = new Vuex.Store({
             });
         resolve();
       });
+    },
+    searchSong({commit,state},{index}){
+      Vue.axios.get('/api/search',{params:{
+          'keywords':state.musicData[index].name
+      }})
+      .then(res => res.data.data.lists)
+      .then(song=> {
+        dispatch('playSong',{hash:song[0].FileHash,index})
+      })
+    },
+    playSong({commit,state},{payload}){
+      Vue.axios.get('/api/play',{params:{
+          'hash': payload.hash
+      }})
+      .then(res => res.data.data)
+      .then(res => {
+        commit('toggleMusic',{res,index:payload.index})
+      })
     }
   }
 })
