@@ -6,6 +6,9 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Vuex from 'vuex'
+import MusicData from './assets/music-data.json'
+import {URL} from './assets/config'
+
 
 Vue.config.productionTip = false
 
@@ -17,6 +20,7 @@ const store = new Vuex.Store({
   state: {
     // 音乐列表信息
     musicData: [],
+    musicIndex: 0,
     skinColor: localStorage.skinColor || '#B72712',
     // tab选项值
     linkBorderIndex: '',
@@ -44,15 +48,8 @@ const store = new Vuex.Store({
     //   state.DOM[payload.name] = payload.dom;
     // },
     // 切换歌曲
-    toggleMusic(state, index) {
-        // state.audio.name = payload.res.audio_name;
-        // state.audio.src = payload.res.play_url;
-        // state.audio.musicImgSrc = payload.res.img;
-        // state.audio.index = payload.index;
-        state.audio.name = state.musicData[index].name;
-        state.audio.src = state.musicData[index].src;
-        state.audio.musicImgSrc = state.musicData[index].musicImgSrc;
-        state.audio.index = index;
+    changeMusic(state, index) {
+        state.musicIdex = index;
     },
     // 添加歌曲
     addMusic(state, payload) {
@@ -65,9 +62,10 @@ const store = new Vuex.Store({
     },
     // 播放歌曲
     playMusic(state, payload) {
-      state.audio.name = payload.name;
-      state.audio.src = payload.src;
-      state.audio.musicImgSrc = payload.imgSrc;
+      let musicData =  state.musicData[state.musicIdex];
+      state.audio.src = payload[0].url;
+      state.audio.name = musicData.name;
+      state.audio.musicImgSrc = musicData.musicImgSrc;
       state.isPlaying = true;
     },
     play(state, flag) {
@@ -94,42 +92,25 @@ const store = new Vuex.Store({
   },
   actions: {
     // 初始化-获取音乐播放信息
-  	getData({commit,state}) {
+  	getInitData({dispatch, commit, state}) {
       if (localStorage.musics !== '[]' && localStorage.musics) {
         state.musicData = JSON.parse(localStorage.musics);
         return;
+      }else{
+        state.musicData = MusicData.musicData;
       }
-      return new Promise((resolve, reject) => {
-        Vue.axios.get('/api/music-data')
-            .then (res => {
-              if (res.data.errno === 0) {
-                state.musicData = res.data.musicData;
-                localStorage.musics = JSON.stringify(state.musicData);
-              }
-            })
-            .then(() => {
-              // 播放第一首歌曲
-              commit('toggleMusic',0)
-            });
-        resolve();
-      });
+      localStorage.musics = JSON.stringify(state.musicData);
+      dispatch('toggleMusic',0);
     },
-    searchSong({commit,state},{index}){
-      Vue.axios.get('/api/search',{params:{
-          'keywords':state.musicData[index].name
-      }})
-      .then(res => res.data.data.lists)
-      .then(song=> {
-        dispatch('playSong',{hash:song[0].FileHash,index})
-      })
-    },
-    playSong({commit,state},{payload}){
-      Vue.axios.get('/api/play',{params:{
-          'hash': payload.hash
+    toggleMusic({commit,state},index){
+  	  commit('changeMusic',index)
+  	  let id = state.musicData[index].id;
+      Vue.axios.get(`${URL}/music/url`,{params:{
+          'id': id
       }})
       .then(res => res.data.data)
       .then(res => {
-        commit('toggleMusic',{res,index:payload.index})
+        commit('playMusic',res)
       })
     }
   }

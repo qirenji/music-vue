@@ -14,29 +14,29 @@
 			<div v-if="isShowHot" class="hot">
 				<div class="keywords">
 					<div v-for="item in hotKeywords" @click="toSearch(item)" class="keyword">{{item}}</div>
-				</div>	
+				</div>
 			</div>
 
       <!-- 搜索页面 -->
 			<div v-else class="search-list" @touchmove="$store.commit('showMiniMusic', false)">
-			
+
 				<div v-show="isShowHistory" v-for="(item,index) in searchHistory" class="history">
 					<div class="icon"><i class="icon-history"></i></div>
 					<div @click="toSearch(item)" class="word">{{item}}</div>
 					<div class="icon"><i @click="searchHistory.splice(index,1)" class="icon-del"></i></div>
 				</div>
-				
+
 				<div v-show="isShowHistory&&searchHistory.length" @click="searchHistory=[]" class="tips">清除搜索记录</div>
 
 				<div v-show="isLoading" class="loading"><i class="icon-loading"></i>搜索中...</div>
-  
+
 				<div v-for="(item, index) of musicList" @click="playMusic(index, item)" class="music">
-          <!-- <div class="icon-music">
-            <img :src="item.f.split('|')[4]&&'http://imgcache.qq.com/music/photo/album_300/'+item.f.split('|')[4]%100+'/300_albumpic_'+item.f.split('|')[4]+'_0.jpg'" alt="microzz.com">
-          </div> -->
+          <!--<div class="icon-music">-->
+            <!--<img :src="item.artists[0].img1v1Url" alt="music.qirenji.com">-->
+          <!--</div>-->
           <div class="music-info">
-            <div class="music-name">{{item.SongName}}</div>
-            <div class="music-singer">{{item.SingerName || '佚名'}}</div>
+            <div class="music-name">{{item.name}}</div>
+            <div class="music-singer">{{`${item.artists[0].name}` || '佚名'}}</div>
             <i v-show="index === playIndex" class="icon-listening"></i>
           </div>
         </div>
@@ -49,14 +49,16 @@
 
 
 <script>
-export default {
+  import {URL, hotKeywords} from '../../assets/config'
+
+  export default {
 	name: 'find',
 	data() {
 		return {
 			keywords: '',
 			isShowHot: true,
 			isShowHistory: false,
-			hotKeywords: [],
+			hotKeywords: hotKeywords,
       // 播放图标控制
 			playIndex: '',
 			isLoading: false,
@@ -89,10 +91,6 @@ export default {
 		this.$store.commit('showMiniMusic',true);
 	},
 	created() {
-		this.axios.get('/api/hot')
-		.then(res => {
-			this.hotKeywords = res.data;
-		})
 	},
 	methods: {
     // 搜索框focus操作
@@ -120,10 +118,10 @@ export default {
 				this.isLoading = true;
 				this.$store.commit('showMiniMusic',false);
 				this.keywords = keywords;
-				this.axios.get('/api/search',{params:{'keywords':keywords}})
-					.then(res => res.data.data.lists)
-					.then(song => {
-						this.musicList = song;
+				this.axios.get(`${URL}/search`,{params:{'keywords':keywords}})
+					.then(res => res.data.result)
+					.then(result => {
+						this.musicList = result.songs;
             console.log(this.musicList);
 						this.isLoading = false;
 						this.searchHistory.unshift(keywords);
@@ -132,24 +130,16 @@ export default {
 		},
     // 播放歌曲
 		playMusic(index,item) {
-			this.axios.get('/api/play',{params:{'hash':item.FileHash}})
-      .then(res => res.data.data)
-      .then(res => {
-        let name = res.audio_name;
-        let src = res.play_url;
-        let imgSrc = res.img;
-        console.log({name: name, src: src, imgSrc: imgSrc})
-      this.$store.commit('playMusic', {name: name, src: src, imgSrc: imgSrc});
-      this.$store.commit('addMusic', {name: name, src: src, musicImgSrc: imgSrc});
+      this.$store.commit('addMusic', {id: item.id, name: `${item.name}-${item.artists[0].name}`, musicImgSrc: item.artists[0].img1v1Url});
+      this.$store.dispatch('toggleMusic', 0);
       this.$store.commit('showMiniMusic', true);
       this.playIndex = index;
-      })
 		},
 	},
 	mounted() {
 		this.$store.commit('changeLinkBorderIndex',2);
 	}
-}	
+}
 </script>
 
 <style lang="scss" scoped>
@@ -349,7 +339,7 @@ export default {
           position: relative;
 
           flex: 1;
-          padding: 8px 10px;
+          padding: 8px 10px 8px 30px;
           .music-name {
             width: 250px;
             text-overflow: ellipsis;

@@ -26,7 +26,7 @@
 <script>
 
 export default {
-	name: 'header',
+	name: 'VHeader',
 
 	data() {
 		return {
@@ -62,7 +62,7 @@ export default {
 			justify-content: center;
 			padding-top: 15px;
 			padding-bottom: 15px;
-			font-size: 20px; 
+			font-size: 20px;
 			letter-spacing: 2px;
 			border-bottom: 1px solid rgba(255,255,255,.2);
 

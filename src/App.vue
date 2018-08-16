@@ -10,7 +10,7 @@
         <router-view></router-view>
 
         <VFooter></VFooter>
-        
+
       </div>
     </transition>
 
@@ -20,7 +20,7 @@
     </transition>
 
     <!-- audio播放器 -->
-    <audio :src="audio.src || (musicData[0]&&musicData[0].src)" :autoplay="isPlaying" ref="audio"></audio>
+    <audio :src="audio.src" :autoplay="isPlaying" ref="audio"></audio>
 
     <About v-show="isShowAbout"></About>
   </div>
@@ -46,24 +46,23 @@ export default {
     About
   },
   beforeCreate() {
-    this.$store.dispatch('getData');
+    this.$store.dispatch('getInitData');
   },
   mounted() {
-    // this.$store.commit('findDOM',{name: 'audio',dom:this.$refs.audio});
+
     this.$refs.audio.addEventListener('ended',() => {this.next();});
-    this.$refs.audio.addEventListener('error', () => {this.next();});
+    // this.$refs.audio.addEventListener('error', () => {console.log('error');this.next();});
   },
   computed: {
     // 当前歌曲信息
     audio() {
       return this.$store.state.audio;
     },
-    // 音乐列表
-    musicData() {
-      return this.$store.state.musicData;
-    },
     isPlaying() {
       return this.$store.state.isPlaying;
+    },
+    musicData() {
+      return this.$store.state.musicData;
     },
     // 是否显示列表页
     isShowIndex() {
@@ -77,7 +76,7 @@ export default {
       // 下一曲
     next() {
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
-      this.$store.commit('toggleMusic', this.audio.index)
+      this.$store.dispatch('toggleMusic', this.audio.index)
     }
   },
   watch: {
@@ -110,7 +109,7 @@ export default {
   .show-enter, .show-leave-active {
     transform: translateX(-350px);
     opacity: 0;
-  }  
+  }
 
   #app, .index {
     position: relative;

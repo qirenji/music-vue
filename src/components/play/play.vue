@@ -92,10 +92,6 @@ export default {
     isPlaying() {
       return this.$store.state.isPlaying;
     },
-    // 获取audio
-    // DOM() {
-    //   return this.$store.state.DOM;
-    // }
   },
   methods: {
     back() {
@@ -106,8 +102,7 @@ export default {
     },
     // 播放/暂停
     toggleMusic(index) {
-      this.$store.commit('toggleMusic', index);
-      this.$store.commit('play', true);
+      this.$store.dispatch('toggleMusic', index);
       setTimeout(() => {
         this.isShowMusicList = false;
       }, 100);
@@ -154,7 +149,7 @@ export default {
     // 播放前一首
     prev() {
       this.audio.index = this.audio.index === 0?this.musicData.length - 1:(--this.audio.index);
-      this.$store.commit('toggleMusic', this.audio.index);
+      this.$store.dispatch('toggleMusic', this.audio.index);
     },
     // 播放
     play() {
@@ -164,7 +159,7 @@ export default {
     // 播放后一首
     next() {
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
-      this.$store.commit('toggleMusic', this.audio.index);
+      this.$store.dispatch('toggleMusic', this.audio.index);
     }
   },
   mounted() {
@@ -183,7 +178,7 @@ export default {
       localStorage.skinColor = val;
     }
   }
-}	
+}
 </script>
 
 <style lang="scss" scoped>
@@ -484,7 +479,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
-        .icon-play{     
+        .icon-play{
           // padding-top: 5%;
           margin: 6% auto;
           i {
@@ -498,7 +493,7 @@ export default {
         }
         .play-icon {
           background: url('./play.png') no-repeat;
-          
+
         }
         .pause-icon {
           background: url('./pause.png') no-repeat;
@@ -520,7 +515,7 @@ export default {
         }
       }
     }
-    
+
     @keyframes loading{
       0% {
         transform: rotate(0);

@@ -36,13 +36,11 @@ export default {
     //点击切换音乐
     toggleMusic(index) {
       if(this.$store.state.audio.index === index){
-        // this.DOM.audio.paused ? this.DOM.audio.play() : this.DOM.audio.pause();
         this.$store.commit('play', !this.isPlaying)
       } else {
-        // this.DOM.audio.play();
         this.$store.commit('play',true);
       }
-      this.$store.commit('toggleMusic', index);
+      this.$store.dispatch('toggleMusic', index);
     },
     //删除音乐
     del(index) {
