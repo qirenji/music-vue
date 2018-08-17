@@ -40,7 +40,7 @@ export default {
       } else {
         this.$store.commit('play',true);
       }
-      this.$store.dispatch('toggleMusic', index);
+      this.$store.commit('toggleMusic', index);
     },
     //删除音乐
     del(index) {

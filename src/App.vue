@@ -51,7 +51,7 @@ export default {
   mounted() {
 
     this.$refs.audio.addEventListener('ended',() => {this.next();});
-    // this.$refs.audio.addEventListener('error', () => {console.log('error');this.next();});
+    this.$refs.audio.addEventListener('error', () => {console.log('error');this.next();});
   },
   computed: {
     // 当前歌曲信息
@@ -75,8 +75,9 @@ export default {
   methods: {
       // 下一曲
     next() {
+      console.log(this.audio.index)
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
-      this.$store.dispatch('toggleMusic', this.audio.index)
+      this.$store.commit('toggleMusic', this.audio.index)
     }
   },
   watch: {

@@ -58,7 +58,7 @@
 			keywords: '',
 			isShowHot: true,
 			isShowHistory: false,
-			hotKeywords: hotKeywords,
+			hotKeywords: [],
       // 播放图标控制
 			playIndex: '',
 			isLoading: false,
@@ -91,8 +91,19 @@
 		this.$store.commit('showMiniMusic',true);
 	},
 	created() {
+	  this.hotKeywords = this.selectData(hotKeywords,6);
 	},
 	methods: {
+	  selectData(data,num) {
+      let rHot = new Array(num);
+      for(let i=0; i<rHot.length;i++){
+        let length = data.length;
+        let random = Math.floor(length * Math.random());
+        rHot[i] = data[random];
+        data.splice(random,1);
+      }
+      return rHot;
+    },
     // 搜索框focus操作
 		inputFocus() {
 			if(this.keywords.trim()) {
@@ -130,10 +141,29 @@
 		},
     // 播放歌曲
 		playMusic(index,item) {
-      this.$store.commit('addMusic', {id: item.id, name: `${item.name}-${item.artists[0].name}`, musicImgSrc: item.artists[0].img1v1Url});
-      this.$store.dispatch('toggleMusic', 0);
-      this.$store.commit('showMiniMusic', true);
-      this.playIndex = index;
+      this.axios.get(`${URL}/music/url`,{params:{
+        'id': item.id
+      }})
+      .then(res => res.data.data)
+      .then(music => {
+        this.axios.get(`${URL}/song/detail`,{params:{
+            'ids': item.id
+          }})
+          .then(res => res.data.songs)
+          .then(detail => {
+            let payload = {
+              id: item.id,
+              index: index,
+              name:`${item.name}-${item.artists[0].name}`,
+              src: music[0].url,
+              musicImgSrc: detail[0].al.picUrl,
+            }
+            this.$store.commit('addMusic',payload)
+            this.$store.commit('toggleMusic', 0);
+            this.$store.commit('showMiniMusic', true);
+            this.playIndex = index;
+          })
+      })
 		},
 	},
 	mounted() {

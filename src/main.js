@@ -47,10 +47,10 @@ const store = new Vuex.Store({
     // findDOM(state, payload) {
     //   state.DOM[payload.name] = payload.dom;
     // },
-    // 切换歌曲
-    changeMusic(state, index) {
-        state.musicIdex = index;
-    },
+    // // 切换歌曲
+    // changeMusic(state, index) {
+    //     state.musicIdex = index;
+    // },
     // 添加歌曲
     addMusic(state, payload) {
       for (let music of state.musicData) {
@@ -61,9 +61,10 @@ const store = new Vuex.Store({
       state.musicData.unshift(payload);
     },
     // 播放歌曲
-    playMusic(state, payload) {
-      let musicData =  state.musicData[state.musicIdex];
-      state.audio.src = payload[0].url;
+    toggleMusic(state, index) {
+      let musicData =  state.musicData[index];
+      state.audio.index = musicData.index;
+      state.audio.src = musicData.src;
       state.audio.name = musicData.name;
       state.audio.musicImgSrc = musicData.musicImgSrc;
       state.isPlaying = true;
@@ -100,19 +101,30 @@ const store = new Vuex.Store({
         state.musicData = MusicData.musicData;
       }
       localStorage.musics = JSON.stringify(state.musicData);
-      dispatch('toggleMusic',0);
+      commit('toggleMusic',0);
     },
-    toggleMusic({commit,state},index){
-  	  commit('changeMusic',index)
-  	  let id = state.musicData[index].id;
-      Vue.axios.get(`${URL}/music/url`,{params:{
-          'id': id
-      }})
-      .then(res => res.data.data)
-      .then(res => {
-        commit('playMusic',res)
-      })
-    }
+    // toggleMusic({commit,state},index){
+  	//   let id = state.musicData[index].id;
+    //   Vue.axios.get(`${URL}/music/url`,{params:{
+    //       'id': id
+    //   }})
+    //   .then(res => res.data.data)
+    //   .then(music => {
+    //     Vue.axios.get(`${URL}/song/detail`,{params:{
+    //         'ids': id
+    //       }})
+    //       .then(res => res.data.songs)
+    //       .then(detail => {
+    //         let payload = {
+    //           index: index,
+    //           src: music[0].url,
+    //           musicImgSrc: detail[0].al.picUrl,
+    //         }
+    //         commit('playMusic',payload)
+    //       })
+    //
+    //   })
+    // }
   }
 })
 /* eslint-disable no-new */
