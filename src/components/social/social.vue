@@ -3,14 +3,14 @@
   <transition name="showRouter">
   	<div class="social">
       <div class="info">
-        <a href="http://www.qirenji.info" target="_blank" class="avatar"><img src="http://www.qirenji.info/img/avatar.jpg" alt=""></a>
+        <a href="http://www.qirenji.com" target="_blank" class="avatar"><img src="http://www.qirenji.com/img/avatar.jpg" alt=""></a>
         <div class="about">
           <div class="name"><a href="http://www.qirenji.info/img/avatar.jpg">_流星达人_</a></div>
           <span class="level">Lv.2</span>
         </div>
         <span @click="isSignIn=true" class="sign">{{isSignIn ? '已签到' : '签到'}}</span>
       </div>
-      
+
       <div class="message">
         <div class="trend set">动态<span>2</span></div>
         <div class="fellow set">关注<span>10</span></div>
@@ -63,7 +63,7 @@ export default {
 		}
 	}
 
-}	
+}
 </script>
 
 <style lang="scss" scoped>
@@ -132,7 +132,7 @@ export default {
     		}
     	}
     	.set + .set {
-    		border-left: 1px solid #f1f1f1;  		
+    		border-left: 1px solid #f1f1f1;
     	}
     }
     .settings {

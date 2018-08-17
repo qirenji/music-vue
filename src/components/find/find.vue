@@ -95,12 +95,13 @@
 	},
 	methods: {
 	  selectData(data,num) {
+	    let _data = JSON.parse(JSON.stringify(data));
       let rHot = new Array(num);
       for(let i=0; i<rHot.length;i++){
-        let length = data.length;
+        let length = _data.length;
         let random = Math.floor(length * Math.random());
-        rHot[i] = data[random];
-        data.splice(random,1);
+        rHot[i] = _data[random];
+        _data.splice(random,1);
       }
       return rHot;
     },

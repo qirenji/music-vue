@@ -49,7 +49,6 @@ export default {
     this.$store.dispatch('getInitData');
   },
   mounted() {
-
     this.$refs.audio.addEventListener('ended',() => {this.next();});
     this.$refs.audio.addEventListener('error', () => {console.log('error');this.next();});
   },
