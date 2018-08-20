@@ -12,7 +12,7 @@ import {URL} from './assets/config'
 
 Vue.config.productionTip = false
 
-Vue.use(VueAxios,axios);
+Vue.use(VueAxios, axios);
 
 Vue.use(Vuex);
 
@@ -29,14 +29,9 @@ const store = new Vuex.Store({
     isPlaying: false,
     isShowMiniMusic: true,
     isShowIndex: true,
-    isShowAbout:false,
+    isShowAbout: false,
     // 当前歌曲信息
-    audio: {
-      name: '',
-      src: '',
-      musicImgSrc: '',
-      index: 0
-    }
+    audio: {}
   },
   mutations: {
     // 切换tab标签
@@ -53,30 +48,36 @@ const store = new Vuex.Store({
     // },
     // 添加歌曲
     addMusic(state, payload) {
+      let hasMusic = state.musicData.find((item) => {
+        return item.id === payload.id;
+      })
+      if (hasMusic) return
       for (let music of state.musicData) {
-        if (JSON.stringify(music) === JSON.stringify(payload)) {
-          return;
-        }
+        music.index++;
       }
       state.musicData.unshift(payload);
     },
     // 播放歌曲
-    toggleMusic(state, index) {
-      let musicData =  state.musicData[index];
-      state.audio.index = musicData.index;
-      state.audio.src = musicData.src;
-      state.audio.name = musicData.name;
-      state.audio.musicImgSrc = musicData.musicImgSrc;
+    playMusic(state, payload) {
+      state.audio.index = payload.index;
+      state.audio.src = payload.src;
+      state.audio.name = payload.name;
+      state.audio.musicImgSrc = payload.musicImgSrc;
       state.isPlaying = true;
     },
     play(state, flag) {
       state.isPlaying = flag;
     },
     del(state, index) {
-      if(state.musicData.length === 0) {
+      if (state.musicData.length === 0) {
         return;
       }
-      state.musicData.splice(index,1);
+      state.musicData.splice(index, 1);
+      state.musicData.forEach((item, i) => {
+        if (i >= index) {
+          item.index--;
+        }
+      })
     },
     showMiniMusic(state, flag) {
       state.isShowMiniMusic = flag;
@@ -93,38 +94,34 @@ const store = new Vuex.Store({
   },
   actions: {
     // 初始化-获取音乐播放信息
-  	getInitData({dispatch, commit, state}) {
+    getInitData({dispatch, commit, state}) {
       if (localStorage.musics !== '[]' && localStorage.musics) {
         state.musicData = JSON.parse(localStorage.musics);
-        return;
-      }else{
+      } else {
         state.musicData = MusicData.musicData;
       }
       localStorage.musics = JSON.stringify(state.musicData);
-      commit('toggleMusic',0);
+      dispatch('toggleMusic', 0);
     },
-    // toggleMusic({commit,state},index){
-  	//   let id = state.musicData[index].id;
-    //   Vue.axios.get(`${URL}/music/url`,{params:{
-    //       'id': id
-    //   }})
-    //   .then(res => res.data.data)
-    //   .then(music => {
-    //     Vue.axios.get(`${URL}/song/detail`,{params:{
-    //         'ids': id
-    //       }})
-    //       .then(res => res.data.songs)
-    //       .then(detail => {
-    //         let payload = {
-    //           index: index,
-    //           src: music[0].url,
-    //           musicImgSrc: detail[0].al.picUrl,
-    //         }
-    //         commit('playMusic',payload)
-    //       })
-    //
-    //   })
-    // }
+    toggleMusic({commit, state}, index) {
+      let id = state.musicData[index].id;
+      Vue.axios.get(`${URL}/music/url`, {
+        params: {
+          'id': id
+        }
+      })
+        .then(res => res.data.data)
+        .then(music => {
+          let payload = {
+            index: index,
+            id: id,
+            name: state.musicData[index].name,
+            src: music[0].url,
+            musicImgSrc: state.musicData[index].musicImgSrc,
+          }
+          commit('playMusic', payload)
+        })
+    }
   }
 })
 /* eslint-disable no-new */
@@ -133,5 +130,5 @@ new Vue({
   store,
   router,
   template: '<App/>',
-  components: { App }
+  components: {App}
 })

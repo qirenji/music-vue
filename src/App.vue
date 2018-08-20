@@ -58,6 +58,7 @@ export default {
       return this.$store.state.audio;
     },
     isPlaying() {
+      console.log(this.$store.state.isPlaying)
       return this.$store.state.isPlaying;
     },
     musicData() {
@@ -74,9 +75,8 @@ export default {
   methods: {
       // 下一曲
     next() {
-      console.log(this.audio.index)
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
-      this.$store.commit('toggleMusic', this.audio.index)
+      this.$store.dispatch('toggleMusic', this.audio.index)
     }
   },
   watch: {

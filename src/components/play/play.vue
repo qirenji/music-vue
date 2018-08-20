@@ -102,7 +102,7 @@ export default {
     },
     // 播放/暂停
     toggleMusic(index) {
-      this.$store.commit('toggleMusic', index);
+      this.$store.dispatch('toggleMusic', index);
       setTimeout(() => {
         this.isShowMusicList = false;
       }, 100);
@@ -149,7 +149,7 @@ export default {
     // 播放前一首
     prev() {
       this.audio.index = this.audio.index === 0?this.musicData.length - 1:(--this.audio.index);
-      this.$store.commit('toggleMusic', this.audio.index);
+      this.$store.dispatch('toggleMusic', this.audio.index);
     },
     // 播放
     play() {
@@ -159,7 +159,7 @@ export default {
     // 播放后一首
     next() {
       this.audio.index = this.audio.index === this.musicData.length - 1 ? 0 : (++this.audio.index);
-      this.$store.commit('toggleMusic', this.audio.index);
+      this.$store.dispatch('toggleMusic', this.audio.index);
     }
   },
   mounted() {

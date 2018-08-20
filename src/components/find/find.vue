@@ -134,7 +134,6 @@
 					.then(res => res.data.result)
 					.then(result => {
 						this.musicList = result.songs;
-            console.log(this.musicList);
 						this.isLoading = false;
 						this.searchHistory.unshift(keywords);
 					})
@@ -142,30 +141,25 @@
 		},
     // 播放歌曲
 		playMusic(index,item) {
-      this.axios.get(`${URL}/music/url`,{params:{
-        'id': item.id
-      }})
-      .then(res => res.data.data)
-      .then(music => {
-        this.axios.get(`${URL}/song/detail`,{params:{
-            'ids': item.id
-          }})
-          .then(res => res.data.songs)
-          .then(detail => {
-            let payload = {
-              id: item.id,
-              index: index,
-              name:`${item.name}-${item.artists[0].name}`,
-              src: music[0].url,
-              musicImgSrc: detail[0].al.picUrl,
-            }
-            this.$store.commit('addMusic',payload)
-            this.$store.commit('toggleMusic', 0);
-            this.$store.commit('showMiniMusic', true);
-            this.playIndex = index;
-          })
+      this.axios.get(`${URL}/song/detail`, {
+        params: {
+          'ids': item.id
+        }
       })
-		},
+        .then(res => res.data.songs)
+        .then(detail => {
+          let payload = {
+            index: 0,
+            id: item.id,
+            name: `${item.name}-${item.artists[0].name}`,
+            musicImgSrc: detail[0].al.picUrl,
+          }
+          this.$store.commit('addMusic', payload);
+          this.$store.dispatch('toggleMusic', 0);
+          this.$store.commit('showMiniMusic', true);
+          this.playIndex = index;
+        })
+    }
 	},
 	mounted() {
 		this.$store.commit('changeLinkBorderIndex',2);
