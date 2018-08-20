@@ -22,7 +22,7 @@ const onlyStatus200 = (req, res) => res.statusCode === 200;
 
 app.use(cache("2 minutes", onlyStatus200));
 
-app.use(express.static(path.resolve(__dirname, "public")));
+app.use(express.static(path.resolve(__dirname, "./build")));
 
 app.use(function(req, res, next) {
   const proxy = req.query.proxy;
@@ -68,7 +68,7 @@ fs.readdirSync("./router/").reverse().forEach(file => {
   app.use(route, Wrap(require("./router/" + file)));
 });
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 18003;
 
 app.listen(port, () => {
   console.log(`server running @ http://localhost:${port}`);
