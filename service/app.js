@@ -22,7 +22,7 @@ const onlyStatus200 = (req, res) => res.statusCode === 200;
 
 app.use(cache("2 minutes", onlyStatus200));
 
-app.use(express.static(path.resolve(__dirname, "./dist")));
+app.use(express.static(path.resolve(__dirname, "../dist")));
 
 app.use(function(req, res, next) {
   const proxy = req.query.proxy;
