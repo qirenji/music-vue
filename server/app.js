@@ -294,7 +294,7 @@ app.use("/playlist/subscribe", require("./router/playlist_subscribe"));
 
 app.use("/playlist/update", require("./router/playlist_update"));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 18003;
 
 app.listen(port, () => {
     console.log(`server running @ http://localhost:${port}`);
