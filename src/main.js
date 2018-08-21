@@ -105,6 +105,7 @@ const store = new Vuex.Store({
       dispatch('toggleMusic', 0);
     },
     toggleMusic({commit, state}, index) {
+      commit('play', false);
       let id = state.musicData[index].id;
       Vue.axios.get(`${URL}/music/url`, {
         params: {

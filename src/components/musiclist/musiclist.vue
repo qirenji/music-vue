@@ -38,7 +38,6 @@ export default {
       if(this.$store.state.audio.index === index){
         this.$store.commit('play', !this.isPlaying)
       } else {
-        this.$store.commit('play',false);
         this.$store.dispatch('toggleMusic', index);
       }
     },
