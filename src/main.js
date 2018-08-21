@@ -59,6 +59,7 @@ const store = new Vuex.Store({
     },
     // 播放歌曲
     playMusic(state, payload) {
+      console.log(payload);
       state.audio.index = payload.index;
       state.audio.src = payload.src;
       state.audio.name = payload.name;
@@ -99,8 +100,8 @@ const store = new Vuex.Store({
         state.musicData = JSON.parse(localStorage.musics);
       } else {
         state.musicData = MusicData.musicData;
+        localStorage.musics = JSON.stringify(state.musicData);
       }
-      localStorage.musics = JSON.stringify(state.musicData);
       dispatch('toggleMusic', 0);
     },
     toggleMusic({commit, state}, index) {

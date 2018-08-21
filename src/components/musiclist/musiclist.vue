@@ -38,9 +38,9 @@ export default {
       if(this.$store.state.audio.index === index){
         this.$store.commit('play', !this.isPlaying)
       } else {
-        this.$store.commit('play',true);
+        this.$store.commit('play',false);
+        this.$store.dispatch('toggleMusic', index);
       }
-      this.$store.dispatch('toggleMusic', index);
     },
     //删除音乐
     del(index) {
