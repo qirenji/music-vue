@@ -59,7 +59,6 @@ const store = new Vuex.Store({
     },
     // 播放歌曲
     playMusic(state, payload) {
-      console.log(payload);
       state.audio.index = payload.index;
       state.audio.src = payload.src;
       state.audio.name = payload.name;

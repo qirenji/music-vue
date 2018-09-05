@@ -58,7 +58,6 @@ export default {
       return this.$store.state.audio;
     },
     isPlaying() {
-      console.log(this.$store.state.isPlaying);
       return this.$store.state.isPlaying;
     },
     musicData() {
