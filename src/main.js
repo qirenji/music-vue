@@ -106,22 +106,22 @@ const store = new Vuex.Store({
     toggleMusic({commit, state}, index) {
       commit('play', false);
       let id = state.musicData[index].id;
-      Vue.axios.get(`${URL}/music/url`, {
-        params: {
-          'id': id
-        }
-      })
-        .then(res => res.data.data)
-        .then(music => {
-          let payload = {
-            index: index,
-            id: id,
-            name: state.musicData[index].name,
-            src: music[0].url,
-            musicImgSrc: state.musicData[index].musicImgSrc,
-          }
-          commit('playMusic', payload)
-        })
+      // Vue.axios.get(`${URL}/music/url`, {
+      //   params: {
+      //     'id': id
+      //   }
+      // })
+      //   .then(res => res.data.data)
+      //   .then(music => {
+      let payload = {
+        index: index,
+        id: id,
+        name: state.musicData[index].name,
+        src: `http://music.163.com/song/media/outer/url?id=${id}`,
+        musicImgSrc: state.musicData[index].musicImgSrc,
+      }
+      commit('playMusic', payload)
+        // })
     }
   }
 })
